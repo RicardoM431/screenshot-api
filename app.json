@@ -1,0 +1,22 @@
+{
+  "name": "Screenshot API",
+  "description": "Screenshot API - Validation Phase Landing Page",
+  "repository": "https://github.com/YOUR_USERNAME/screenshot-api",
+  "keywords": ["screenshot", "api", "saas", "validation"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  }
+}

@@ -13,6 +13,29 @@ This project follows the validation-first approach:
 2. ⏳ Get 50 signups in 7 days (IN PROGRESS)
 3. ❌ Build the API (ONLY IF VALIDATED)
 
+## 🚀 One-Click Deploy
+
+Deploy instantly to any platform:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/screenshot-api)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/YOUR_USERNAME/screenshot-api)
+
+**Or use CLI:**
+
+```bash
+# Vercel (easiest)
+npx vercel --prod
+
+# Netlify
+npx netlify deploy --prod
+
+# Railway (requires login)
+railway up
+```
+
 ## Quick Start - Validation Phase
 
 ### 1. Setup Formspree (Email Collection)
@@ -40,13 +63,9 @@ Visit http://localhost:3000
 
 ### 4. Deploy (Choose One)
 
-**Option A: Railway (Recommended)**
+**Option A: Vercel (Easiest)**
 ```bash
-# Install Railway CLI
-npm install -g @railway/cli
-
-# Login
-railway login
+npx vercel --prod
 
 # Deploy
 railway up
