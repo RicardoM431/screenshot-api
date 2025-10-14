@@ -343,18 +343,64 @@ curl -X POST https://api.screenshotapi.dev/v1/capture \<br>
       <h2>Get Early Access</h2>
       <p>Join the waitlist and be among the first developers to get access when we launch.</p>
       <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="form-group">
+        <!-- Email (required) -->
+        <div style="margin-bottom: 15px;">
           <input
             type="email"
             name="email"
             placeholder="your@email.com"
             required
+            style="width: 100%; padding: 12px; font-size: 1em; border: 2px solid #ddd; border-radius: 5px; box-sizing: border-box;"
             aria-label="Email address"
           >
-          <input type="hidden" name="_subject" value="New Screenshot API Waitlist Signup">
-          <input type="hidden" name="_next" value="/thanks.html">
-          <button type="submit">Join Waitlist</button>
         </div>
+
+        <!-- Use Case (optional) -->
+        <div style="margin-bottom: 15px;">
+          <select
+            name="use_case"
+            style="width: 100%; padding: 12px; font-size: 1em; border: 2px solid #ddd; border-radius: 5px; background: white; cursor: pointer; box-sizing: border-box;"
+            aria-label="Primary use case"
+          >
+            <option value="">What will you use it for? (optional)</option>
+            <option value="social-previews">Social media preview cards</option>
+            <option value="portfolio">Portfolio thumbnails</option>
+            <option value="monitoring">Website monitoring</option>
+            <option value="link-previews">Link preview service</option>
+            <option value="documentation">Documentation screenshots</option>
+            <option value="testing">Automated testing</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Expected Volume (optional) -->
+        <div style="margin-bottom: 15px;">
+          <select
+            name="expected_volume"
+            style="width: 100%; padding: 12px; font-size: 1em; border: 2px solid #ddd; border-radius: 5px; background: white; cursor: pointer; box-sizing: border-box;"
+            aria-label="Expected monthly volume"
+          >
+            <option value="">Expected screenshots/month? (optional)</option>
+            <option value="<100">&lt;100 (Free tier)</option>
+            <option value="100-1000">100-1,000 ($9/mo)</option>
+            <option value="1000-10000">1,000-10,000 ($29/mo)</option>
+            <option value="10000+">10,000+ ($99/mo)</option>
+          </select>
+        </div>
+
+        <!-- Hidden fields -->
+        <input type="hidden" name="_subject" value="New Screenshot API Waitlist Signup">
+        <input type="hidden" name="_next" value="/thanks.html">
+
+        <!-- Submit button -->
+        <button
+          type="submit"
+          style="width: 100%; padding: 12px 30px; font-size: 1em; background: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background 0.3s;"
+          onmouseover="this.style.background='#0052a3'"
+          onmouseout="this.style.background='#0066cc'"
+        >
+          Join Waitlist
+        </button>
       </form>
       <p style="margin-top: 20px; color: #666;">
         <small>No credit card required. Free tier available forever.</small>
