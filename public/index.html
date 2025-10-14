@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screenshot API - URL to Image in One API Call</title>
+  <meta name="description" content="Simple API to convert any URL to screenshot. $9/mo for 1000 screenshots. Perfect for developers building social tools, link previews, and monitoring.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8f9fa;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+
+    .tagline {
+      font-size: 1.3em;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .hero-code {
+      background: #1a1a1a;
+      color: #f8f9fa;
+      padding: 25px;
+      border-radius: 8px;
+      margin: 30px 0;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      line-height: 1.5;
+    }
+
+    .hero-code .comment {
+      color: #888;
+    }
+
+    .hero-code .string {
+      color: #89ddff;
+    }
+
+    .hero-code .key {
+      color: #82aaff;
+    }
+
+    section {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #1a1a1a;
+      font-size: 1.8em;
+    }
+
+    h3 {
+      margin: 20px 0 10px 0;
+      color: #333;
+      font-size: 1.3em;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      padding: 8px 0;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #0066cc;
+      font-weight: bold;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .price-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px solid #e9ecef;
+    }
+
+    .price-card.popular {
+      border-color: #0066cc;
+      background: #f0f7ff;
+    }
+
+    .price-name {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+
+    .price-amount {
+      font-size: 2em;
+      color: #0066cc;
+      margin: 10px 0;
+    }
+
+    .price-amount small {
+      font-size: 0.5em;
+      color: #666;
+    }
+
+    .price-limit {
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .waitlist-form {
+      background: #f0f7ff;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px solid #0066cc;
+    }
+
+    .waitlist-form h2 {
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    input[type="email"] {
+      padding: 12px 20px;
+      font-size: 1em;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      min-width: 300px;
+      flex: 1;
+      max-width: 400px;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 1em;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0052a3;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .benefit {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .benefit-icon {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .cta-secondary {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .cta-secondary a {
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .cta-secondary a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .tagline {
+        font-size: 1.1em;
+      }
+
+      input[type="email"] {
+        min-width: 100%;
+      }
+
+      .form-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📸 Screenshot API</h1>
+      <p class="tagline">Convert any URL to a screenshot image</p>
+    </header>
+
+    <section>
+      <h2>Simple API Call</h2>
+      <div class="hero-code">
+curl -X POST https://api.screenshotapi.dev/v1/capture \<br>
+  -H <span class="string">"Authorization: Bearer YOUR_API_KEY"</span> \<br>
+  -H <span class="string">"Content-Type: application/json"</span> \<br>
+  -d <span class="string">'{<br>
+    <span class="key">"url"</span>: <span class="string">"https://example.com"</span>,<br>
+    <span class="key">"width"</span>: 1280,<br>
+    <span class="key">"height"</span>: 800<br>
+  }'</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Perfect For</h2>
+      <ul>
+        <li>Social media preview cards</li>
+        <li>Portfolio thumbnails</li>
+        <li>Website monitoring</li>
+        <li>Link preview services</li>
+        <li>Documentation screenshots</li>
+        <li>Automated testing</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why Developers Choose Us</h2>
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">⚡</div>
+          <strong>Fast</strong>
+          <p>1-3 second capture time</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">💰</div>
+          <strong>Affordable</strong>
+          <p>Starting at $9/month</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🔒</div>
+          <strong>Reliable</strong>
+          <p>99.9% uptime SLA</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🌍</div>
+          <strong>Global CDN</strong>
+          <p>Fast delivery worldwide</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Simple Pricing</h2>
+      <div class="pricing">
+        <div class="price-card">
+          <div class="price-name">Free</div>
+          <div class="price-amount">$0</div>
+          <div class="price-limit">100/month</div>
+        </div>
+        <div class="price-card popular">
+          <div class="price-name">Starter</div>
+          <div class="price-amount">$9<small>/mo</small></div>
+          <div class="price-limit">1,000/month</div>
+        </div>
+        <div class="price-card">
+          <div class="price-name">Growth</div>
+          <div class="price-amount">$29<small>/mo</small></div>
+          <div class="price-limit">10,000/month</div>
+        </div>
+        <div class="price-card">
+          <div class="price-name">Scale</div>
+          <div class="price-amount">$99<small>/mo</small></div>
+          <div class="price-limit">100,000/month</div>
+        </div>
+      </div>
+      <p style="text-align: center; color: #666; margin-top: 20px;">
+        All plans include 24-hour caching, multiple formats, and full-page support
+      </p>
+    </section>
+
+    <section class="waitlist-form">
+      <h2>Get Early Access</h2>
+      <p>Join the waitlist and be among the first developers to get access when we launch.</p>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            aria-label="Email address"
+          >
+          <input type="hidden" name="_subject" value="New Screenshot API Waitlist Signup">
+          <input type="hidden" name="_next" value="/thanks.html">
+          <button type="submit">Join Waitlist</button>
+        </div>
+      </form>
+      <p style="margin-top: 20px; color: #666;">
+        <small>No credit card required. Free tier available forever.</small>
+      </p>
+    </section>
+
+    <div class="cta-secondary">
+      <a href="/API_DOCS.md" target="_blank">View Full API Documentation →</a>
+    </div>
+
+    <footer>
+      <p>Screenshot API - Launching Soon</p>
+      <p style="margin-top: 10px;">Built for developers who need reliable screenshot automation</p>
+    </footer>
+  </div>
+</body>
+</html>
