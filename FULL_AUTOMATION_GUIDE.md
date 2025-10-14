@@ -122,7 +122,7 @@ Everything needed to enable full automation:
 ### Step 1: Push to GitHub (2 min)
 ```bash
 # Create repo on github.com, then:
-git remote add origin https://github.com/YOUR_USERNAME/screenshot-api.git
+git remote add origin https://github.com/RicardoM431/screenshot-api.git
 git push -u origin master
 ```
 

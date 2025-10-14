@@ -30,7 +30,7 @@ npx vercel --prod
 4. **Push this repo to GitHub**:
    ```bash
    # Create GitHub repo first, then:
-   git remote add origin https://github.com/YOUR_USERNAME/screenshot-api.git
+   git remote add origin https://github.com/RicardoM431/screenshot-api.git
    git push -u origin master
    ```
 5. **Select repo** in Railway

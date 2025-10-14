@@ -55,7 +55,7 @@ You'll see:
 
 ### Step 3: Add Secrets to GitHub
 
-1. Go to your GitHub repo: `https://github.com/YOUR_USERNAME/screenshot-api`
+1. Go to your GitHub repo: `https://github.com/RicardoM431/screenshot-api`
 2. Go to: **Settings** → **Secrets and variables** → **Actions**
 3. Click: **New repository secret**
 4. Add these 3 secrets:
@@ -128,7 +128,7 @@ Every commit gets:
 Add to your README.md:
 
 ```markdown
-[![Deploy](https://github.com/YOUR_USERNAME/screenshot-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/YOUR_USERNAME/screenshot-api/actions/workflows/deploy.yml)
+[![Deploy](https://github.com/RicardoM431/screenshot-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/RicardoM431/screenshot-api/actions/workflows/deploy.yml)
 ```
 
 Shows deployment status on your README.

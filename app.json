@@ -1,7 +1,7 @@
 {
   "name": "Screenshot API",
   "description": "Screenshot API - Validation Phase Landing Page",
-  "repository": "https://github.com/YOUR_USERNAME/screenshot-api",
+  "repository": "https://github.com/RicardoM431/screenshot-api",
   "keywords": ["screenshot", "api", "saas", "validation"],
   "buildpacks": [
     {

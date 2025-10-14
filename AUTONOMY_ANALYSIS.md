@@ -84,7 +84,7 @@ These require human action for **security/authentication** reasons:
 **How to fix:**
 ```bash
 # Create repo on github.com
-git remote add origin https://github.com/YOUR_USERNAME/screenshot-api.git
+git remote add origin https://github.com/RicardoM431/screenshot-api.git
 git push -u origin master
 ```
 **After this:** Fully automated
