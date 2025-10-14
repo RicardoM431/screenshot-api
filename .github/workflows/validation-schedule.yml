@@ -1,0 +1,294 @@
+name: Validation Schedule Reminders
+
+on:
+  schedule:
+    # Day 1: 8 AM
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  create-daily-tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create validation reminders
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date();
+            const startDate = new Date('2025-10-14'); // Adjust to your start date
+            const dayNum = Math.ceil((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
+
+            if (dayNum < 1 || dayNum > 7) {
+              console.log('Not in validation period');
+              return;
+            }
+
+            const tasks = {
+              1: {
+                title: '📅 Day 1: Reddit Launch',
+                body: `## Day 1 Tasks - Reddit Launch
+
+            ### Morning (8-10am EST)
+            - [ ] Post to r/webdev
+              - Content: \`distribution/reddit-webdev.md\`
+              - Best time: 8-10am EST
+            - [ ] Post to r/SideProject
+              - Content: \`distribution/reddit-sideproject.md\`
+              - Best time: 9-11am EST
+
+            ### Afternoon
+            - [ ] Respond to ALL comments (within 2 hours)
+            - [ ] Track signup count
+              - Check Vercel logs
+              - Run: \`npm run metrics update <count>\`
+
+            ### Evening
+            - [ ] Post Twitter thread
+              - Content: \`distribution/twitter-thread.md\`
+              - Use hashtags: #buildinpublic #indiehackers
+
+            ### End of Day
+            - [ ] Update metrics
+            - [ ] Note main feedback themes
+            - [ ] Plan Day 2 adjustments
+
+            [View Reddit Content →](./distribution/reddit-webdev.md)
+            [View Twitter Thread →](./distribution/twitter-thread.md)
+            `
+              },
+              2: {
+                title: '📅 Day 2: Dev.to + More Reddit',
+                body: `## Day 2 Tasks - Dev.to Article + r/API
+
+            ### Morning
+            - [ ] Publish Dev.to article
+              - Content: \`distribution/devto-article.md\`
+              - Add Day 1 metrics
+              - Share on Twitter
+
+            - [ ] Post to r/API
+              - Content: \`distribution/reddit-api.md\`
+              - Best time: 10am-2pm EST
+
+            ### Throughout Day
+            - [ ] Respond to Dev.to comments
+            - [ ] Continue Reddit engagement
+            - [ ] Reply to Twitter mentions
+
+            ### Evening
+            - [ ] Update metrics: \`npm run metrics update <count>\`
+            - [ ] Twitter Day 2 update
+            - [ ] Summarize feedback
+
+            [View Dev.to Article →](./distribution/devto-article.md)
+            `
+              },
+              3: {
+                title: '📅 Day 3: Hacker News + Product Hunt',
+                body: `## Day 3 Tasks - HN + Product Hunt Ship
+
+            ### Morning (8-9am EST) - CRITICAL TIMING
+            - [ ] Submit to Hacker News
+              - Content: \`distribution/hackernews-post.md\`
+              - Post first comment IMMEDIATELY
+              - Monitor closely for first 2 hours
+
+            - [ ] Create Product Hunt Ship page
+              - Guide: \`distribution/producthunt-ship.md\`
+              - Post first update
+
+            ### First 2 Hours (HN Critical!)
+            - [ ] Check HN every 15 minutes
+            - [ ] Respond to EVERY comment
+            - [ ] Be humble, curious, not defensive
+
+            ### Rest of Day
+            - [ ] Continue HN engagement
+            - [ ] Share Ship page URL
+            - [ ] Update metrics
+            - [ ] Mid-validation assessment
+
+            [View HN Guide →](./distribution/hackernews-post.md)
+            `
+              },
+              4: {
+                title: '📅 Day 4: Amplification',
+                body: `## Day 4 Tasks - Amplification + Engagement
+
+            ### All Day
+            - [ ] Share on LinkedIn (if you use it)
+            - [ ] Post in Indie Hackers
+            - [ ] Relevant Slack/Discord communities
+            - [ ] Email list (if you have one)
+
+            ### Content Recycling
+            - [ ] Quote tweet good HN feedback
+            - [ ] Share Dev.to article again
+            - [ ] Reddit follow-up comments
+
+            ### Deep Engagement
+            - [ ] Respond to all pending comments
+            - [ ] Update articles with new metrics
+            - [ ] Thank everyone for feedback
+            - [ ] Address common questions
+
+            ### Metrics
+            - [ ] Update: \`npm run metrics update <count>\`
+            - [ ] Distribution breakdown (which channels work best)
+            - [ ] Twitter Day 4 update
+            `
+              },
+              5: {
+                title: '📅 Day 5: Reality Check',
+                body: `## Day 5 Tasks - Honest Assessment
+
+            ### Morning Assessment
+            - [ ] Run: \`npm run metrics\`
+            - [ ] Current signup count: ____
+            - [ ] On track for 50? YES / NO / MAYBE
+
+            ### If Behind Target
+            - [ ] Consider: Lower price? ($5 instead of $9)
+            - [ ] Consider: Extend validation? (10 days instead of 7)
+            - [ ] Action: More aggressive sharing
+            - [ ] Action: Improve landing page copy
+
+            ### Continue Engagement
+            - [ ] All Reddit posts
+            - [ ] HN discussion
+            - [ ] Dev.to article
+            - [ ] Twitter replies
+            - [ ] Product Hunt Ship
+
+            ### Evening
+            - [ ] Twitter Day 5 update (brutally honest)
+            - [ ] Update metrics
+            - [ ] Analyze what's working/not working
+
+            ### Gap Analysis
+            - Best performing channel: ____
+            - Worst performing channel: ____
+            - Common objections: ____
+            - Adjustments needed: ____
+            `
+              },
+              6: {
+                title: '📅 Day 6: Final Push',
+                body: `## Day 6 Tasks - Last 24 Hours
+
+            ### Morning
+            - [ ] Last distribution push
+            - [ ] Share on any remaining platforms
+            - [ ] Re-engage old Reddit posts
+            - [ ] Update Product Hunt Ship
+            - [ ] Ask for shares (politely)
+
+            ### Optimization
+            - [ ] Improve landing page based on feedback
+            - [ ] Address common objections
+            - [ ] Update pricing if needed
+            - [ ] Clarify unclear points
+
+            ### Maximum Engagement
+            - [ ] Respond to every comment
+            - [ ] Thank everyone
+            - [ ] Be authentic about progress
+            - [ ] Share genuine learnings
+
+            ### Evening Prep
+            - [ ] Update metrics
+            - [ ] Current count: ____
+            - [ ] Need by tomorrow: ____
+            - [ ] Realistic? ____
+
+            ### Twitter Update
+            - [ ] Day 6 update (24 hours remaining)
+            - [ ] Current progress
+            - [ ] What you'll do regardless of outcome
+            `
+              },
+              7: {
+                title: '📅 Day 7: Final Results & Decision',
+                body: `## Day 7 Tasks - Results & Decision Time
+
+            ### Morning - Final Count
+            - [ ] Check Vercel logs one last time
+            - [ ] Count signups from all sources:
+              - Formspree: ____
+              - Product Hunt Ship: ____
+              - Other: ____
+              - **TOTAL: ____**
+
+            ### Run Final Metrics
+            \`\`\`bash
+            npm run metrics update <FINAL_COUNT>
+            npm run metrics
+            \`\`\`
+
+            ### Results Analysis
+            - [ ] Total signups: ____ / 50
+            - [ ] Breakdown by channel:
+              - Reddit: ____
+              - HN: ____
+              - Dev.to: ____
+              - Twitter: ____
+              - Product Hunt: ____
+            - [ ] Conversion rate: ____%
+            - [ ] Key learnings: ____
+
+            ### Decision Time
+
+            **IF 50+ SIGNUPS:**
+            - [ ] 🎉 Celebrate!
+            - [ ] Post validation success thread
+            - [ ] Start Week 2 build plan
+            - [ ] Email waitlist with timeline
+            - [ ] Thank everyone publicly
+
+            **IF 25-49 SIGNUPS:**
+            - [ ] Assess: Adjust or pivot?
+            - [ ] Options:
+              - [ ] Extend validation 3 days
+              - [ ] Lower price and retry
+              - [ ] Better messaging
+              - [ ] Build anyway (risk)
+              - [ ] Pivot to different idea
+
+            **IF <25 SIGNUPS:**
+            - [ ] Accept result gracefully
+            - [ ] Post learnings thread
+            - [ ] Thank everyone for feedback
+            - [ ] Analyze what didn't work
+            - [ ] Plan next validation idea
+
+            ### Public Results Post
+            - [ ] Twitter (long thread with results)
+            - [ ] Dev.to (follow-up article)
+            - [ ] Reddit (update posts)
+            - [ ] HN (comment with results)
+            - [ ] Product Hunt Ship (final update)
+
+            ### Documentation
+            - [ ] Save all feedback
+            - [ ] Analyze what worked
+            - [ ] Note lessons learned
+            - [ ] Archive for future reference
+
+            ### Next Steps
+            - [ ] If validated: See \`QUICK_START.md\` Week 2-3
+            - [ ] If not: Plan pivot strategy
+            `
+              }
+            };
+
+            if (tasks[dayNum]) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: tasks[dayNum].title,
+                body: tasks[dayNum].body,
+                labels: ['validation', `day-${dayNum}`],
+                assignees: [context.repo.owner]
+              });
+              console.log(`Created Day ${dayNum} task issue`);
+            }
